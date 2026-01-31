@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "redteam-agent-core"
+version = "0.1.0"
+description = "Core library for RedTeam Agent - automated security testing platform"
+authors = ["RedTeam Agent <team@redteam-agent.dev>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "redteam_agent_core", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5"
+pydantic-settings = "^2.1"
+openai = "^1.12"
+httpx = "^0.26"
+tenacity = "^8.2"
+structlog = "^24.1"
+aiofiles = "^23.2"
+diskcache = "^5.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+pytest-asyncio = "^0.23"
+pytest-cov = "^4.1"
+mypy = "^1.8"
+ruff = "^0.2"
+black = "^24.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
