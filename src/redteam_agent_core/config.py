@@ -1,5 +1,6 @@
 """Configuration for RedTeam Agent Core"""
 
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 
@@ -12,6 +13,11 @@ class Settings(BaseSettings):
     - REDUCTO_API_KEY: API key for Reducto document processing
     - FIRECRAWL_API_KEY: API key for Firecrawl web crawling
     """
+
+    model_config = ConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
 
     # OpenRouter Configuration
     OPENROUTER_API_KEY: str
@@ -48,7 +54,3 @@ class Settings(BaseSettings):
     # Caching
     CACHE_TTL_HOURS: int = 24
     CACHE_DIR: str = ".cache"
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
